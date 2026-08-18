@@ -251,10 +251,8 @@ p{ margin: 0 0 1em; }
   color:#e6e2d8; max-width: 46ch; font-size:1.12rem;
 }
 .hero-logo{
-  width: 100%; max-width: 340px;
-  background: #fff; padding: 28px 30px 22px;
-  border-radius: var(--radius);
-  box-shadow: 0 24px 60px rgba(0,0,0,.35);
+  width: 100%; max-width: 380px;
+  filter: drop-shadow(0 10px 30px rgba(0,0,0,.45));
 }
 .hero-actions{ display:flex; gap:1em; margin-top: 2em; flex-wrap: wrap; }
 
