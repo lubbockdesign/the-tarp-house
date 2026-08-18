@@ -55,6 +55,43 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
+  // hover cards (3D tilt + background pan on mousemove)
+  if (window.matchMedia('(hover: hover)').matches) {
+    document.querySelectorAll('.hcard-wrap').forEach(wrap => {
+      const card = wrap.querySelector('.hcard');
+      const bg = wrap.querySelector('.hcard-bg');
+      let width = 0, height = 0, resetTimer = null;
+
+      const measure = () => {
+        const rect = wrap.getBoundingClientRect();
+        width = rect.width;
+        height = rect.height;
+      };
+      measure();
+      window.addEventListener('resize', measure);
+
+      const applyTilt = (mouseX, mouseY) => {
+        const px = width ? mouseX / width : 0;
+        const py = height ? mouseY / height : 0;
+        const rX = px * 30;
+        const rY = py * -30;
+        card.style.transform = `rotateY(${rX}deg) rotateX(${rY}deg)`;
+        bg.style.transform = `translateX(${px * -40}px) translateY(${py * -40}px)`;
+      };
+
+      wrap.addEventListener('mouseenter', () => clearTimeout(resetTimer));
+      wrap.addEventListener('mousemove', (e) => {
+        const rect = wrap.getBoundingClientRect();
+        const mouseX = e.clientX - rect.left - width / 2;
+        const mouseY = e.clientY - rect.top - height / 2;
+        applyTilt(mouseX, mouseY);
+      });
+      wrap.addEventListener('mouseleave', () => {
+        resetTimer = setTimeout(() => applyTilt(0, 0), 1000);
+      });
+    });
+  }
+
   // contact form -> mailto composer (static site, no backend)
   const form = document.getElementById('contact-form');
   if (form) {
