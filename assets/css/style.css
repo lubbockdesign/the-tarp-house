@@ -556,7 +556,7 @@ section{ padding: 96px 0; position:relative; }
   .nav-phone{ display:none; }
   .hamburger{ display:flex; }
   .hero{ min-height: 560px; text-align:left; }
-  .hero-logo{ margin-left:0; max-width: 280px; }
+  .hero-logo{ margin-left: -44px; max-width: 280px; }
   .hero-actions .btn{ width:100%; justify-content:center; }
   .hero-actions{ flex-direction:column; }
   section{ padding: 64px 0; }
